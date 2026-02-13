@@ -6,18 +6,28 @@ class MathMLEBNFParser {
   peek() {
     return this.mathmlString[this.index];
   }
-  peekAfter(offset) {
-    return this.mathmlString[this.index + offset];
-  }
-  eat() {
+  consume(condition = x => true) {
+    if (!condition()) {
+      throw new Error('유효하지 않은 토큰입니다. / Invalid token');
+    }
     return this.mathmlString[this.index++];
-  
-  parseMathMLDocument() {
+  }
+  throwUp() {
+    return this.mathmlString[this.index--];
+  }
+  parseMathML() {
     const parsedElement = this.parseElement();
     return parsedElement;
   }
   parseElement() {
-    // 여기에 들어갈 명령 묶음은 나중에 추가 예정
+    const tag = this.parseStartTag();
+    
   }
-  // 여기에 들어갈 명령함 명령은 나중에 추가 예정
+  parseStartTag() {
+    this.consume(char => char === '<');
+    const tagName = this.parseName();
+    if (this.peek() === ' ') {
+
+    }
+  }
 }
