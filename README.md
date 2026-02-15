@@ -1,5 +1,5 @@
 # mathml-ebnf
 
-## 이 확장형 자료함의 자료들이 하는 일들
-1. 수식 요소 표기법 사용 문자열을 확장형 베커스-누어 형식으로 문자열 처리 뒤 자바스크립트 객체로 변환
-2. 수식 요소 표기법 사용 문자열을 문자열 처리한 자바스크립트 객체를 계산하거나 수식 변화 그림 그리기
+## When I complete this repository
+1. This repository will convert the Presentation MathML input to JSON using Extended Backus-Naur form.
+2. This repository will calculate or draw the graph of the Presentation MathML input.
