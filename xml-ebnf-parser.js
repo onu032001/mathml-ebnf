@@ -3,7 +3,7 @@ function htmlToText(htmlStr) {
   temp.innerHTML = htmlStr;
   return temp.innerText;
 }
-class MathMLEBNFParser {
+class XMLEBNFParser {
   constructor(mathmlString) {
     this.mathmlString = mathmlString;
     this.index = 0;
