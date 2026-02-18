@@ -44,7 +44,8 @@ class XMLEBNFParser {
       if (this.peek() === '<') {
         content.push(this.parseElement());
       } else {
-        content.push(this.parseText());
+        const textResult = this.parseText();
+        if (textResult.type === 'text') content.push(textResult);
       }
     }
     return content;
@@ -55,6 +56,7 @@ class XMLEBNFParser {
       contentResult += this.consume();
     }
     contentResult = htmlToText(contentResult);
+    if (/^\s*$/.test(contentResult)) return {type: 'noContentText'};
     return { type: 'text', content: contentResult };
   }
   parseStartTag() {
@@ -89,7 +91,7 @@ class XMLEBNFParser {
   }
   parseName() {
     let tagName = '';
-    while (/[\w-]/.test(this.peek())) {
+    while (/^[\w-]$/.test(this.peek())) {
       tagName += this.consume();
     }
     return { tagName };
