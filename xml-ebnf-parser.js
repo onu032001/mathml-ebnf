@@ -4,28 +4,28 @@ function htmlToText(htmlStr) {
   return temp.innerText;
 }
 class XMLEBNFParser {
-  constructor(mathmlString) {
-    this.mathmlString = mathmlString;
+  constructor(xmlString) {
+    this.xmlString = xmlString;
     this.index = 0;
   }
   peek() {
-    return this.mathmlString[this.index];
+    return this.xmlString[this.index];
   }
   consume(condition = x => true) {
-    if (!condition(this.mathmlString[this.index])) {
+    if (!condition(this.xmlString[this.index])) {
       throw new Error('Invalid token');
     }
-    return this.mathmlString[this.index++];
+    return this.xmlString[this.index++];
   }
   throwUp() {
-    return this.mathmlString[this.index--];
+    return this.xmlString[this.index--];
   }
   checkSyntax() {
-    if (this.index > this.mathmlString.length) {
+    if (this.index > this.xmlString.length) {
       throw new Error('Invalid syntax');
     }
   }
-  parseMathML() {
+  parseXML() {
     const parsedElement = this.parseElement();
     return parsedElement;
   }
@@ -40,7 +40,7 @@ class XMLEBNFParser {
   }
   parseContent() {
     let content = [];
-    while (this.mathmlString.slice(this.index, this.index + 2) !== '</') {
+    while (this.xmlString.slice(this.index, this.index + 2) !== '</') {
       if (this.peek() === '<') {
         content.push(this.parseElement());
       } else {
