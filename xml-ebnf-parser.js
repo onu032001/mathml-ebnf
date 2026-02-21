@@ -36,7 +36,7 @@ class XMLEBNFParser {
     }
     const content = this.parseContent();
     this.parseEndTag(tag.tagName);
-    return { type: 'tag', ...tag, content }
+    return { type: 'tag', ...tag, content };
   }
   parseContent() {
     let content = [];
